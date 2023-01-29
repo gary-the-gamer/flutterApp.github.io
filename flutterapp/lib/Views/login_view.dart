@@ -45,7 +45,7 @@ class _LoginViewState extends State<LoginView> {
             controller: _email,
           ),
           TextField(
-            enableSuggestions: false,
+            enableSuggestions: false, 
             autocorrect: false,
             obscureText: true,
             decoration: InputDecoration(
