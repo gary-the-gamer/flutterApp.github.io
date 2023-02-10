@@ -1,17 +1,13 @@
-import 'dart:developer' as devtools show log;
-
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutterapp/Views/login_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterapp/Views/notes_view.dart';
 import 'package:flutterapp/Views/register_view.dart';
 import 'package:flutterapp/Views/verify_email_view.dart';
 import 'package:flutterapp/constants/routes.dart';
-import 'firebase_options.dart';
+import 'package:flutterapp/services/auth/auth_service.dart';
 
 void main() {
-  WidgetsFlutterBinding.ensureInitialized(); 
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(
     MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -35,15 +31,13 @@ class HommePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: Firebase.initializeApp(
-        options: DefaultFirebaseOptions.currentPlatform,
-      ),
+      future: AuthService.firebase().initialize(),
       builder: (context, snapshot) {
         switch (snapshot.connectionState) {
           case ConnectionState.done:
-            final user = FirebaseAuth.instance.currentUser;
+            final user = AuthService.firebase().currentUser;
             if (user != null) {
-              if (user.emailVerified) {
+              if (user.isEmailVerified) {
                 return const NotesView();
               } else {
                 return const VerifyEmailView();
