@@ -10,6 +10,7 @@ class NotesView extends StatefulWidget {
   State<NotesView> createState() => _NotesViewState();
 }
 
+
 class _NotesViewState extends State<NotesView> {
   @override
   Widget build(BuildContext context) {
