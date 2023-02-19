@@ -45,7 +45,7 @@ class HommePage extends StatelessWidget {
             } else {
               return const LoginView();
             }
-          default:
+          default: 
             return const CircularProgressIndicator();
         }
       },
