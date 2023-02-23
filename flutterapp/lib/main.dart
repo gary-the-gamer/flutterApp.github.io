@@ -1,6 +1,7 @@
 import 'package:flutterapp/Views/login_view.dart';
 import 'package:flutter/material.dart';
-import 'package:flutterapp/Views/notes_view.dart';
+import 'package:flutterapp/notes/new_notes_view.dart';
+import 'package:flutterapp/notes/notes_view.dart';
 import 'package:flutterapp/Views/register_view.dart';
 import 'package:flutterapp/Views/verify_email_view.dart';
 import 'package:flutterapp/constants/routes.dart';
@@ -21,6 +22,7 @@ void main() {
         LoginRoute: (context) => const LoginView(),
         registerRoute: (context) => const RegisterView(),
         verifyEmailRoute: (context) => const VerifyEmailView(),
+        newNoteRoute: (context) => const NewNoteView(),
       },
     ),
   );
@@ -45,7 +47,7 @@ class HommePage extends StatelessWidget {
             } else {
               return const LoginView();
             }
-          default: 
+          default:
             return const CircularProgressIndicator();
         }
       },
