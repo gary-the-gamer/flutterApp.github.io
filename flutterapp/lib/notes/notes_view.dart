@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutterapp/constants/routes.dart';
 import 'package:flutterapp/services/auth/auth_service.dart';
-import 'package:flutterapp/services/crud/notes_service.dart';
+import 'package:flutterapp/utlities/crud/notes_service.dart';
 
 import '../enums/menu_action.dart';
 
