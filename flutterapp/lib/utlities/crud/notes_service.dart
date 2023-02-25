@@ -16,6 +16,7 @@ class NotesService {
       final createdUser = await createUser(email: email);
       return createdUser;
     } catch (e) {
+      final createdUser = await createUser(email: email);
       rethrow;
     }
   }
@@ -34,9 +35,9 @@ class NotesService {
 
   factory NotesService() => _shared;
 
-  Stream<List<DatabaseNotes>> get allNotes => _notesStreamController.stream;
   late final StreamController<List<DatabaseNotes>> _notesStreamController;
 
+  Stream<List<DatabaseNotes>> get allNotes => _notesStreamController.stream;
   Future<void> _cacheNotes() async {
     final allNotes = await getAllNotes();
     _notes = allNotes.toList();
@@ -251,7 +252,7 @@ class DatbaseUser {
   final int id;
   final String email;
 
-  DatbaseUser({
+  const DatbaseUser({
     required this.id,
     required this.email,
   });
