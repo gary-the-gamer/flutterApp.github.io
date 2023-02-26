@@ -259,7 +259,7 @@ class DatbaseUser {
 
   DatbaseUser.fromRow(Map<String, Object?> map)
       : id = map[idColumn] as int,
-        email = map[""] as String;
+        email = map[emailColumn] as String;
 
   @override
   String toString() => 'Person, Id = $id, email = $email';
