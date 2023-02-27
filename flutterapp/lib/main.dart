@@ -1,7 +1,7 @@
 import 'package:flutterapp/Views/login_view.dart';
 import 'package:flutter/material.dart';
-import 'package:flutterapp/notes/new_notes_view.dart';
-import 'package:flutterapp/notes/notes_view.dart';
+import 'package:flutterapp/Views/notes/new_notes_view.dart';
+import 'package:flutterapp/Views/notes/notes_view.dart';
 import 'package:flutterapp/Views/register_view.dart';
 import 'package:flutterapp/Views/verify_email_view.dart';
 import 'package:flutterapp/constants/routes.dart';

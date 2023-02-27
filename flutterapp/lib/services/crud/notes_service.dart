@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:flutter/cupertino.dart';
-import 'package:flutterapp/utlities/crud/crud_exceptions.dart';
+import 'package:flutterapp/services/crud/crud_exceptions.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart' show join;
@@ -237,9 +237,9 @@ class NotesService {
       final db = await openDatabase(dbPath);
       _db = db;
       // create the user table
-      await db.execute(creatUserTable);
+      await db.execute(createUserTable);
       // create note table
-      await db.execute(creatNoteTable);
+      await db.execute(createNoteTable);
       await _cacheNotes();
     } on MissingPlatformDirectoryException {
       throw UnableToGetDocumentsDirectory();
@@ -303,22 +303,21 @@ class DatabaseNotes {
 const dbName = 'notes.db';
 const noteTable = 'note';
 const userTable = 'user';
-const idColumn = "id";
-const emailColumn = "email";
+const idColumn = 'id';
+const emailColumn = 'email';
 const userIdColumn = 'user_id';
 const textColumn = 'text';
-const isSyncedWithCloudColumn = 'is synced_with_cloud';
-
-const creatUserTable = '''CREATE TABLE IF NOT EXISTS "user" (
-	"user_ID"	INTEGER NOT NULL,
-	"email"	TEXT NOT NULL UNIQUE,
-	PRIMARY KEY("user_ID" AUTOINCREMENT)
-);''';
-const creatNoteTable = '''CREATE TABLE IF NOT EXISTS "note" (
-	"id"	INTEGER NOT NULL,
-	"user_id"	INTEGER NOT NULL,
-	"text"	TEXT,
-	"is_synced_with_cloud"	INTEGER NOT NULL DEFAULT 0,
-	PRIMARY KEY("id" AUTOINCREMENT),
-	FOREIGN KEY("user_id") REFERENCES "user"("user_ID")
-);''';
+const isSyncedWithCloudColumn = 'is_synced_with_cloud';
+const createUserTable = '''CREATE TABLE IF NOT EXISTS "user" (
+        "id"	INTEGER NOT NULL,
+        "email"	TEXT NOT NULL UNIQUE,
+        PRIMARY KEY("id" AUTOINCREMENT)
+      );''';
+const createNoteTable = '''CREATE TABLE IF NOT EXISTS "note" (
+        "id"	INTEGER NOT NULL,
+        "user_id"	INTEGER NOT NULL,
+        "text"	TEXT,
+        "is_synced_with_cloud"	INTEGER NOT NULL DEFAULT 0,
+        FOREIGN KEY("user_id") REFERENCES "user"("id"),
+        PRIMARY KEY("id" AUTOINCREMENT)
+      );''';
